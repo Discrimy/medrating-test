@@ -1,20 +1,15 @@
-from dataclasses import dataclass
-from typing import Dict
+from dataclasses import dataclass, field
+from dataclasses_json import dataclass_json, LetterCase, config
 
 
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass(frozen=True)
 class Geo:
     lat: str
     lng: str
 
-    @classmethod
-    def from_dict(cls, json: Dict) -> 'Geo':
-        return Geo(
-            json['lat'],
-            json['lng'],
-        )
 
-
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass(frozen=True)
 class Address:
     street: str
@@ -23,35 +18,19 @@ class Address:
     zipcode: str
     geo: Geo
 
-    @classmethod
-    def from_dict(cls, json: Dict) -> 'Address':
-        return Address(
-            json['street'],
-            json['suite'],
-            json['city'],
-            json['zipcode'],
-            Geo.from_dict(json['geo']),
-        )
 
-
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass(frozen=True)
 class Company:
     name: str
     catch_phrase: str
     bs: str
 
-    @classmethod
-    def from_dict(cls, json: Dict) -> 'Company':
-        return Company(
-            json['name'],
-            json['catchPhrase'],
-            json['bs'],
-        )
 
-
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass(frozen=True)
 class User:
-    id_: int
+    id_: int = field(metadata=config(field_name='id'))
     name: str
     username: str
     email: str
@@ -60,32 +39,11 @@ class User:
     website: str
     company: Company
 
-    @classmethod
-    def from_dict(cls, json: Dict) -> 'User':
-        return User(
-            json['id'],
-            json['name'],
-            json['username'],
-            json['email'],
-            Address.from_dict(json['address']),
-            json['phone'],
-            json['website'],
-            Company.from_dict(json['company']),
-        )
 
-
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass(frozen=True)
 class Task:
-    id_: int
+    id_: int = field(metadata=config(field_name='id'))
     user_id: int
     title: str
     completed: bool
-
-    @classmethod
-    def from_dict(cls, json: Dict) -> 'Task':
-        return Task(
-            json['id'],
-            json['userId'],
-            json['title'],
-            json['completed'],
-        )
