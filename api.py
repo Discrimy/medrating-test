@@ -15,6 +15,8 @@ def fetch_users_with_tasks() -> Dict[User, List[Task]]:
     user_id_to_tasks: Dict[int, List[Task]] = {}
     user_id_to_user: Dict[int, User] = {}
     for user_entry in response_users.json():
+        # There are some entries with 'id' fields only
+        # Ignore them
         try:
             user = User.from_dict(user_entry)
             user_id_to_tasks[user.id_] = []
@@ -23,6 +25,8 @@ def fetch_users_with_tasks() -> Dict[User, List[Task]]:
             pass
 
     for task_entry in response_tasks.json():
+        # There are some entries with 'id' fields only
+        # Ignore them
         try:
             task = Task.from_dict(task_entry)
             user_id_to_tasks[task.user_id].append(task)
