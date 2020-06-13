@@ -37,7 +37,8 @@ TASKS_JSON = [
     {
         "userId": 1,
         "id": 2,
-        "title": "quis ut nam facilis et officia quigre fretgrebergregkrenginejignejgnrjegnjrengjrengjirengje",
+        "title": "quis ut nam facilis et officia quigre "
+                 "fretgrebergregkrenginejignejgnrjegnjrengjrengjirengje",
         "completed": False
     },
     {
