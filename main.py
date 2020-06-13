@@ -4,9 +4,8 @@ from datetime import datetime
 from pathlib import Path
 
 from api import fetch_users_with_tasks
-from report import format_report, REPORT_DATETIME_FORMAT
-
-OLD_REPORT_DATETIME_FORMAT = '%Y-%m-%dT%H:%M'
+from report import format_report
+from util import REPORT_DATETIME_FORMAT, OLD_REPORT_DATETIME_FORMAT
 
 if __name__ == '__main__':
     user_to_tasks = fetch_users_with_tasks()
