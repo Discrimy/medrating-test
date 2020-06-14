@@ -17,10 +17,10 @@ def main():
         report_path = tasks_path / f'{user.username}.txt'
         if report_path.exists():
             save_report_as_old(report_path, user)
-        save_new_report(now, report_path, tasks, user)
+        save_new_report(report_path, user, tasks, now)
 
 
-def save_new_report(creation_datetime, report_path, tasks, user):
+def save_new_report(report_path, user, tasks, creation_datetime):
     with tempfile.NamedTemporaryFile(
             mode='w',
             encoding='UTF-8',
